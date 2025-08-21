@@ -5,6 +5,7 @@ import Diplomas from "./pages/Diplomas"
 import AboutUs from "./pages/About us"
 import Contact from "./pages/contac"
 import Dashboard from "./pages/dashbord"
+import Cartpage from "./components/cartPge"
 
 function App(){
     return <div>
@@ -15,8 +16,9 @@ function App(){
             <Route path="AboutUs" element = {<AboutUs/>}/>
             <Route path="Contact Us" element = {<Contact/>}/>
             <Route path="Dshboard" element = {<Dashboard/>}/>
+            <Route path="Cartpage" element = {<Cartpage/>}/>
         </Routes>
-
+ 
     </div>
 }
 

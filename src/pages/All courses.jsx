@@ -1,51 +1,128 @@
-import Cor from "../components/cour"
-import car from "../components/cor.png"
-import { NavLink } from "react-router-dom"
-import Footerv from "../components/footer"
-import Navbar from "../components/navbar"
+import { useState } from "react";
+import Cor from "../components/cour";
+import car from "../components/cor.png";
+import Footerv from "../components/footer";
+import Navbar from "../components/navbar";
 
-function Allcourses (){
-    return <>
-   <Navbar/>
+function Allcourses() {
+  const [category, setCategory] = useState("all");
 
-    <div >
-    <div className="flex gap-16">
-    <div className="text-2xl mt-24 ml-3 space-y-3">
-    <label className="flex items-center gap-3 cursor-pointer hover:text-blue-500">
-    <input className="w-8 h-8 accent-blue-500" type="radio" name="category" value="all" />All</label>
-    <label className="flex items-center gap-3 cursor-pointer hover:text-blue-500">
-    <input className="w-8 h-8 accent-blue-500" type="radio" name="category" value="ict" />ICT</label>
-     <label className="flex items-center gap-3 cursor-pointer hover:text-blue-500">
-    <input className="w-8 h-8 accent-blue-500" type="radio" name="category" value="business" />Business</label>
-    <label className="flex items-center gap-3 cursor-pointer hover:text-blue-500">
-   <input className="w-8 h-8 accent-blue-500" type="radio" name="category" value="economic" />Economic</label>
+  const courses = [
+    { id: 1, name: "Foundemental Softwer", category: "ict", price: 30, star: "⭐⭐⭐⭐⭐" },
+    { id: 2, name: "Foundemental ICT", category: "ict", price: 20, star: "⭐⭐⭐⭐⭐" },
+    { id: 3, name: "Full Stack Developer", category: "web", price: 35, star: "⭐⭐⭐⭐⭐" },
+    { id: 4, name: "English", category: "business", price: 30, star: "⭐⭐⭐⭐⭐" },
+    { id: 5, name: "Economic", category: "economic", price: 40, star: "⭐⭐⭐⭐⭐" },
+    { id: 6, name: "Business", category: "business", price: 30, star: "⭐⭐⭐⭐⭐" },
+    { id: 7, name: "Data Science", category: "data", price: 20, star: "⭐⭐⭐⭐⭐" },
+    { id: 8, name: "Cyber Security", category: "ict", price: 50, star: "⭐⭐⭐⭐⭐" },
+    { id: 9, name: "Web Developer", category: "web", price: 40, star: "⭐⭐⭐⭐⭐" },
+    { id: 10, name: "Software Developers", category: "ict", price: 20, star: "⭐⭐⭐⭐⭐" },
+  ];
 
-    <label className="flex items-center gap-3 cursor-pointer hover:text-blue-500">
-    <input className="w-8 h-8 accent-blue-500" type="radio" name="category" value="web" />Web Developers</label>
+  // filter garee category
+  const filteredCourses =
+    category === "all"
+      ? courses
+      : courses.filter((c) => c.category === category);
 
-    <label className="flex items-center gap-3 cursor-pointer hover:text-blue-500">
-    <input className="w-8 h-8 accent-blue-500" type="radio" name="category" value="data" />Data Science</label>
-</div>
+  return (
+    <>
+      <Navbar />
+      <div className="flex gap-16">
+        {/* Category filter */}
+        <div className="text-2xl mt-24 ml-3 space-y-3">
+          <label className="flex items-center gap-3 cursor-pointer hover:text-blue-500">
+            <input
+              className="w-8 h-8 accent-blue-500"
+              type="radio"
+              name="category"
+              value="all"
+              checked={category === "all"}
+              onChange={() => setCategory("all")}
+            />
+            All
+          </label>
 
+          <label className="flex items-center gap-3 cursor-pointer hover:text-blue-500">
+            <input
+              className="w-8 h-8 accent-blue-500"
+              type="radio"
+              name="category"
+              value="ict"
+              checked={category === "ict"}
+              onChange={() => setCategory("ict")}
+            />
+            ICT
+          </label>
 
-      <div className="grid grid-cols-4 pl-8 ">
-     <Cor name= "Foundemental Softwer " img = {car} name2= "foundemental softwer" star = "⭐⭐⭐⭐⭐⭐"  price = "30.00" btn = "Add Cart"/>
-     <Cor name= "Foundemental ICT" img = {car} name2= "foundemental ICT" star = "⭐⭐⭐⭐⭐⭐"  price = "20.00" btn = "Add Cart"/>
-     <Cor name= " full stack developer" img = {car} name2= "full satck Developer" star = "⭐⭐⭐⭐⭐⭐"  price = "35.00" btn = "Add Cart"/>
-     <Cor name= "english" img = {car} name2= " englis" star = "⭐⭐⭐⭐⭐⭐"  price = "30.00" btn = "Add Cart"/>
-     <Cor name= " Economic  " img = {car} name2= " Economic" star = "⭐⭐⭐⭐⭐⭐"  price = "40.00" btn = "Add Cart"/>
-     <Cor name= " Bussines" img = {car} name2= " Bissiness" star = "⭐⭐⭐⭐⭐⭐"  price = "30.00" btn = "Add Cart"/>
-     <Cor name= " Data science" img = {car} name2= "Data Science " star = "⭐⭐⭐⭐⭐⭐"  price = "20.00" btn = "Add Cart"/>
-     <Cor name= " CyberSecurety " img = {car} name2= "CeyberSecurity " star = "⭐⭐⭐⭐⭐⭐"  price = "50.00" btn = "Add Cart"/>
-     <Cor name= " Web devoloper" img = {car} name2= " wEBDEVELOPER" star = "⭐⭐⭐⭐⭐⭐"  price = "40.00" btn = "Add Cart"/>
-     <Cor name= "  Bussines" img = {car} name2= " Bussines " star = "⭐⭐⭐⭐⭐⭐"  price = "30.00" btn = "Add Cart"/>
-     <Cor name= "  ICT" img = {car} name2= "  ICT" star = "⭐⭐⭐⭐⭐⭐"  price = "30.00" btn = "Add Cart"/>
-     <Cor name= "Softwer Developers " img = {car} name2= " Softwer Develepors" star = "⭐⭐⭐⭐⭐⭐"  price = "20.00" btn = "Add Cart"/>
-    </div>
-    </div>
+          <label className="flex items-center gap-3 cursor-pointer hover:text-blue-500">
+            <input
+              className="w-8 h-8 accent-blue-500"
+              type="radio"
+              name="category"
+              value="business"
+              checked={category === "business"}
+              onChange={() => setCategory("business")}
+            />
+            Business
+          </label>
+
+          <label className="flex items-center gap-3 cursor-pointer hover:text-blue-500">
+            <input
+              className="w-8 h-8 accent-blue-500"
+              type="radio"
+              name="category"
+              value="economic"
+              checked={category === "economic"}
+              onChange={() => setCategory("economic")}
+            />
+            Economic
+          </label>
+
+          <label className="flex items-center gap-3 cursor-pointer hover:text-blue-500">
+            <input
+              className="w-8 h-8 accent-blue-500"
+              type="radio"
+              name="category"
+              value="web"
+              checked={category === "web"}
+              onChange={() => setCategory("web")}
+            />
+            Web Developers
+          </label>
+
+          <label className="flex items-center gap-3 cursor-pointer hover:text-blue-500">
+            <input
+              className="w-8 h-8 accent-blue-500"
+              type="radio"
+              name="category"
+              value="data"
+              checked={category === "data"}
+              onChange={() => setCategory("data")}
+            />
+            Data Science
+          </label>
         </div>
 
-        <Footerv/>
+        {/* Courses List */}
+        <div className="grid grid-cols-4 gap-6 pl-8 py-6">
+          {filteredCourses.map((course) => (
+            <Cor
+              key={course.id}
+              name={course.name}
+              img={car}
+              name2={course.name}
+              star={course.star}
+              price={course.price}
+              btn="Add Cart"
+            />
+          ))}
+        </div>
+      </div>
+      <Footerv />
     </>
+  );
 }
-export default Allcourses
+
+export default Allcourses;

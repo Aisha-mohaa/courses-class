@@ -1,35 +1,42 @@
-import car from "../components/cor.png"
-import Cor from "./cour"
-function Coursese (){
-    return <>
-    <div className="grid grid-cols-4 pl-8 ">
-     <Cor name= "Foundemental Softwer " img = {car} name2= "foundemental softwer" star = "⭐⭐⭐⭐⭐⭐"  price = "30.00" btn = "Add Cart"/>
-     <Cor name= "Foundemental ICT" img = {car} name2= "foundemental ICT" star = "⭐⭐⭐⭐⭐⭐"  price = "20.00" btn = "Add Cart"/>
-     <Cor name= " full stack developer" img = {car} name2= "full satck Developer" star = "⭐⭐⭐⭐⭐⭐"  price = "35.00" btn = "Add Cart"/>
-     <Cor name= "english" img = {car} name2= " englis" star = "⭐⭐⭐⭐⭐⭐"  price = "30.00" btn = "Add Cart"/>
-     <Cor name= " Economic  " img = {car} name2= " Economic" star = "⭐⭐⭐⭐⭐⭐"  price = "40.00" btn = "Add Cart"/>
-     <Cor name= " Bussines" img = {car} name2= " Bissiness" star = "⭐⭐⭐⭐⭐⭐"  price = "30.00" btn = "Add Cart"/>
-     <Cor name= " Data science" img = {car} name2= "Data Science " star = "⭐⭐⭐⭐⭐⭐"  price = "20.00" btn = "Add Cart"/>
-     <Cor name= " CyberSecurety " img = {car} name2= "CeyberSecurity " star = "⭐⭐⭐⭐⭐⭐"  price = "50.00" btn = "Add Cart"/>
-     <Cor name= " Web devoloper" img = {car} name2= " wEBDEVELOPER" star = "⭐⭐⭐⭐⭐⭐"  price = "40.00" btn = "Add Cart"/>
-     <Cor name= "  Bussines" img = {car} name2= " Bussines " star = "⭐⭐⭐⭐⭐⭐"  price = "30.00" btn = "Add Cart"/>
-     <Cor name= "  ICT" img = {car} name2= "  ICT" star = "⭐⭐⭐⭐⭐⭐"  price = "30.00" btn = "Add Cart"/>
-     <Cor name= "Softwer Developers " img = {car} name2= " Softwer Develepors" star = "⭐⭐⭐⭐⭐⭐"  price = "20.00" btn = "Add Cart"/>
+import { useState } from "react";
+import car from "../components/cor.png";
+import Cor from "./cour";
+import { useDispatch } from "react-redux";
+import { addCart } from "../assets/redux/reducer/counter";
+
+function Coursese({ search }) {
+  const [dataa] = useState([
+    { id: 1, name: "Foundemental Softwer", name2: "foundemental softwer", price: 30, star: "⭐⭐⭐⭐⭐" },
+    { id: 2, name: "Foundemental ICT", name2: "foundemental ICT", price: 20, star: "⭐⭐⭐⭐⭐" },
+    { id: 3, name: "Full Stack Developer", name2: "full stack Developer", price: 35, star: "⭐⭐⭐⭐⭐" },
+    { id: 4, name: "English", name2: "English", price: 30, star: "⭐⭐⭐⭐⭐" },
+    { id: 5, name: "Economic", name2: "Economic", price: 40, star: "⭐⭐⭐⭐⭐" },
+    // ... items kale sida hore
+  ]);
+
+  const dispatch = useDispatch();
+
+  const filteredData = dataa.filter((item) =>
+    item.name.toLowerCase().includes(search.toLowerCase()) ||
+    item.name2.toLowerCase().includes(search.toLowerCase())
+  );
+
+  return (
+    <div className="grid grid-cols-4 gap-6 pl-8 py-6">
+      {filteredData.map((course) => (
+        <Cor
+          key={course.id}
+          name={course.name}
+          img={car}
+          name2={course.name2}
+          star={course.star}
+          price={course.price}
+          btn="Add Cart"
+          onAdd={() => dispatch(addCart(course))}
+        />
+      ))}
     </div>
-
-
-    {/* <div>
-        <div>
-            <h1  className="font-semibold text-2xl">Catergories</h1>
-        </div>
-
-       <div className="w-72 h-72 rounded-lg bg-[url('/cor.png')] bg-cover bg-center"></div>
-       
-    </div> */}
-
-
-    
-    </>
+  );
 }
 
-export default Coursese
+export default Coursese;
